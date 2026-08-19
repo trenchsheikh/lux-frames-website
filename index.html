@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Lux Frames</title>
 <link rel="icon" type="image/png" href="assets/d__lux-frames_LF-02.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
@@ -12,22 +15,36 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
     min-height: 100vh;
-    font-family: 'Georgia', serif;
+    font-family: 'Inter', Arial, sans-serif;
+    color: #fff;
+    padding: 56px 24px 40px;
   }
   .logo {
     width: 180px;
-    margin-left: 10px;
     opacity: 0;
     animation: fadeIn 2s ease forwards;
+  }
+  .notice {
+    max-width: 760px;
+    margin-top: 28px;
+    text-align: center;
+    line-height: 1.7;
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 0;
+    animation: fadeIn 2s ease 0.3s forwards;
+  }
+  .notice p + p {
+    margin-top: 14px;
   }
   .socials {
     display: flex;
     gap: 20px;
-    margin-top: 20px;
+    margin-top: 18px;
     opacity: 0;
-    animation: fadeIn 2s ease 0.8s forwards;
+    animation: fadeIn 2s ease 1s forwards;
   }
   .socials a {
     display: flex;
@@ -36,7 +53,7 @@
   }
   .socials a:hover { opacity: 1; }
   .cta {
-    margin-top: 10px;
+    margin-top: 30px;
     padding: 10px 28px;
     background: transparent;
     color: #fff;
@@ -45,9 +62,10 @@
     letter-spacing: 1.5px;
     text-transform: uppercase;
     cursor: pointer;
-    font-family: 'Georgia', serif;
+    font-family: 'Inter', Arial, sans-serif;
+    font-weight: 500;
     opacity: 0;
-    animation: fadeIn 2s ease 1s forwards;
+    animation: fadeIn 2s ease 0.8s forwards;
     transition: background 0.3s, color 0.3s;
   }
   .cta:hover {
@@ -61,6 +79,12 @@
 </head>
 <body>
   <img src="assets/d__lux-frames_LF-02.png" alt="Lux Frames" class="logo">
+  <div class="notice">
+    <p>We&rsquo;ve closed our website to focus on what we do best: creating custom rimless glasses for our clients.</p>
+    <p>Our focus is now on finding the right shape, fit and style for each client&rsquo;s face, rather than offering a one size fits all approach.</p>
+    <p>Custom orders are available for non prescription glasses and sunglasses, as well as prescription glasses and sunglasses.</p>
+    <p>Message us on WhatsApp today to start your custom order.</p>
+  </div>
   <button class="cta">Get Your Custom Pair</button>
   <div class="socials">
     <a href="https://www.tiktok.com/@allday.lux" target="_blank" aria-label="TikTok">

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lux Frames</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'Georgia', serif;
+  }
+  .logo {
+    width: 180px;
+    opacity: 0;
+    animation: fadeIn 2s ease forwards;
+  }
+  .cta {
+    margin-top: 48px;
+    padding: 10px 28px;
+    background: transparent;
+    color: #fff;
+    border: 2px solid #fff;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-family: 'Georgia', serif;
+    opacity: 0;
+    animation: fadeIn 2s ease 1s forwards;
+    transition: background 0.3s, color 0.3s;
+  }
+  .cta:hover {
+    background: #fff;
+    color: #000;
+  }
+  @keyframes fadeIn {
+    to { opacity: 1; }
+  }
+</style>
+</head>
+<body>
+  <img src="assets/d__lux-frames_LF-02.png" alt="Lux Frames" class="logo">
+  <button class="cta">Get Your Custom Pair</button>
+</body>
+</html>

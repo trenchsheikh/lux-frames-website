@@ -118,7 +118,8 @@
   .trustpilot-link:hover{border-bottom-color:#111}
   .review-stars{font-size:17px;line-height:1;letter-spacing:1.5px;color:#111}
   .review-label{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#4f4a44}
-  .review-carousel{max-width:620px;margin:10px auto 20px;position:relative;min-height:154px;overflow:hidden;perspective:1000px}
+  .review-carousel{max-width:620px;margin:10px auto 20px;position:relative;min-height:154px;overflow:hidden;perspective:1000px;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+  .review-carousel:active{cursor:grabbing}
   .review-card{position:absolute;inset:0;padding:18px 20px;border:1px solid var(--line);border-radius:8px;background:rgba(246,244,240,.72);text-align:left;opacity:0;transform:translateX(38px) rotateY(-10deg) scale(.985);transform-origin:center center;transition:opacity .55s ease,transform .65s cubic-bezier(.22,.61,.36,1);pointer-events:none}
   .review-card.active{opacity:1;transform:translateX(0) rotateY(0deg) scale(1);pointer-events:auto;z-index:2}
   .review-card.exiting-left{opacity:0;transform:translateX(-38px) rotateY(10deg) scale(.985);z-index:1}
@@ -380,7 +381,7 @@
                 <span class="review-stars" aria-hidden="true">★★★★★</span>
                 <span class="review-label">5 Star Reviews on Trustpilot</span>
               </a>
-              <div class="reviews-count">12 five-star reviews</div>
+              <div class="reviews-count">294 five-star reviews</div>
             </div>
 
             <div class="review-carousel" aria-label="Customer reviews">
@@ -511,30 +512,96 @@
 </div>
 <script>
   (() => {
+    const carousel = document.querySelector('.review-carousel');
     const cards = Array.from(document.querySelectorAll('.review-card'));
-    if (cards.length < 2) return;
+    if (!carousel || cards.length < 2) return;
 
     let index = 0;
+    let timer;
+    let startX = 0;
+    let deltaX = 0;
+    let dragging = false;
 
-    function advance() {
+    function show(nextIndex, direction = 1) {
       const current = cards[index];
-      const nextIndex = (index + 1) % cards.length;
       const next = cards[nextIndex];
+      if (current === next) return;
 
       current.classList.remove('active');
-      current.classList.add('exiting-left');
+      current.classList.remove('exiting-left');
+      current.style.transform = direction > 0
+        ? 'translateX(-38px) rotateY(10deg) scale(.985)'
+        : 'translateX(38px) rotateY(-10deg) scale(.985)';
+      current.style.opacity = '0';
 
-      next.classList.remove('exiting-left');
-      next.classList.add('active');
+      next.style.transition = 'none';
+      next.style.transform = direction > 0
+        ? 'translateX(38px) rotateY(-10deg) scale(.985)'
+        : 'translateX(-38px) rotateY(10deg) scale(.985)';
+      next.style.opacity = '0';
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          next.style.transition = '';
+          next.classList.add('active');
+          next.style.transform = '';
+          next.style.opacity = '';
+        });
+      });
 
       setTimeout(() => {
-        current.classList.remove('exiting-left');
+        current.style.transform = '';
+        current.style.opacity = '';
       }, 700);
 
       index = nextIndex;
     }
 
-    setInterval(advance, 4500);
+    function next() {
+      show((index + 1) % cards.length, 1);
+    }
+
+    function prev() {
+      show((index - 1 + cards.length) % cards.length, -1);
+    }
+
+    function restartAutoplay() {
+      clearInterval(timer);
+      timer = setInterval(next, 4500);
+    }
+
+    function onStart(x) {
+      dragging = true;
+      startX = x;
+      deltaX = 0;
+      clearInterval(timer);
+    }
+
+    function onMove(x) {
+      if (!dragging) return;
+      deltaX = x - startX;
+    }
+
+    function onEnd() {
+      if (!dragging) return;
+      dragging = false;
+
+      if (Math.abs(deltaX) > 45) {
+        deltaX < 0 ? next() : prev();
+      }
+
+      restartAutoplay();
+    }
+
+    carousel.addEventListener('touchstart', e => onStart(e.touches[0].clientX), {passive:true});
+    carousel.addEventListener('touchmove', e => onMove(e.touches[0].clientX), {passive:true});
+    carousel.addEventListener('touchend', onEnd);
+
+    carousel.addEventListener('mousedown', e => onStart(e.clientX));
+    window.addEventListener('mousemove', e => onMove(e.clientX));
+    window.addEventListener('mouseup', onEnd);
+
+    restartAutoplay();
   })();
 </script>
 </body>

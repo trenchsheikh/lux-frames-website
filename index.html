@@ -47,8 +47,8 @@
     backdrop-filter:blur(14px);
     position:sticky;top:0;z-index:20;
   }
-  .nav{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;width:100%}
-  .brand-wrap{grid-column:2;justify-self:center}
+  .nav{display:flex;justify-content:center;align-items:center;width:100%}
+  .brand-wrap{justify-self:center}
   .brand-wrap{display:flex;align-items:center;justify-content:center;overflow:hidden}
   .brand-logo{
     display:block;
@@ -65,8 +65,7 @@
     margin:0 auto;
     filter:none;
   }
-  .nav-links{display:flex;gap:34px;align-items:center;font-size:13px;color:#333;grid-column:1;grid-row:1}
-  .nav-actions{display:flex;justify-content:flex-end;align-items:center;gap:18px;grid-column:3;grid-row:1}
+  .nav-links,.nav-actions{display:none}
   .whatsapp-btn{
     display:inline-flex;align-items:center;justify-content:center;gap:10px;
     padding:14px 20px;border-radius:9px;background:#111;color:#fff;font-size:13px;font-weight:500;

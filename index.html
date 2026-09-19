@@ -113,11 +113,23 @@
   .hero-cta:hover{background:var(--green-dark)}
   .hero-cta .arrow{margin-left:auto;font-size:22px;line-height:1}
   .micro{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8b867e;margin-top:10px;text-align:center}
-  .social-proof{display:flex;align-items:center;justify-content:center;gap:10px;margin:24px 0 18px}
-  .trustpilot-link{width:max-content;margin-left:auto;margin-right:auto;padding:8px 0;border-bottom:1px solid transparent;transition:.2s ease}
+  .social-proof{display:flex;align-items:center;justify-content:center;gap:10px;margin:24px 0 10px}
+  .trustpilot-link{width:max-content;margin-left:auto;margin-right:auto;padding:4px 0 2px;border-bottom:1px solid #8f8981;transition:.2s ease}
   .trustpilot-link:hover{border-bottom-color:#111}
-  .review-stars{font-size:18px;line-height:1;letter-spacing:2px;color:#111}
-  .review-label{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#4f4a44}
+  .review-stars{font-size:17px;line-height:1;letter-spacing:1.5px;color:#111}
+  .review-label{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#4f4a44}
+  .review-carousel{max-width:620px;margin:10px auto 20px;position:relative;min-height:154px}
+  .review-card{position:absolute;inset:0;padding:18px 20px;border:1px solid var(--line);border-radius:8px;background:rgba(246,244,240,.72);text-align:left;opacity:0;transform:translateY(5px);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
+  .review-card.active{opacity:1;transform:translateY(0);pointer-events:auto}
+  .review-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:8px}
+  .review-name{font-size:13px;font-weight:600;color:#222}
+  .review-date{font-size:11px;color:#8b867e;white-space:nowrap}
+  .review-card .stars{font-size:13px;letter-spacing:1.5px;margin-bottom:8px;color:#111}
+  .review-title{font-size:14px;font-weight:600;margin-bottom:6px;color:#24211f}
+  .review-copy{font-size:12px;line-height:1.55;color:#68625c;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+  .review-dots{display:flex;justify-content:center;gap:6px;margin-top:8px}
+  .review-dot{width:5px;height:5px;border-radius:50%;border:0;background:#c8c3bc;padding:0;cursor:pointer}
+  .review-dot.active{background:#333}
 
   /* Video placeholder */
   .video-card{
@@ -223,6 +235,10 @@
     .usp-sub{font-size:10px}
     .hero-cta{font-size:14px;padding:15px 16px}
     .social-proof{justify-content:center}
+    .review-carousel{min-height:170px;margin-bottom:18px}
+    .review-card{padding:16px}
+    .review-title{font-size:13px}
+    .review-copy{font-size:11.5px}
 
     .section{padding:46px 0}
     .section h2,.why h2{font-size:30px}
@@ -321,10 +337,68 @@
             <div class="caption-under">Watch to see how we help you find your perfect pair</div>
           </div>
 
-          <a class="social-proof trustpilot-link" id="reviews" href="https://trustpilot.com/review/luxframes.com" target="_blank" rel="noopener noreferrer" aria-label="Read Lux Frames reviews on Trustpilot">
+          <a class="social-proof trustpilot-link" id="reviews" href="https://trustpilot.com/review/luxframes.com" target="_blank" rel="noopener noreferrer" aria-label="Read Lux Frames reviews">
             <span class="review-stars" aria-hidden="true">★★★★★</span>
             <span class="review-label">5 Star Reviews</span>
           </a>
+
+          <div class="review-carousel" aria-label="Customer reviews">
+            <article class="review-card active">
+              <div class="review-top"><span class="review-name">Zayn</span><span class="review-date">September 18, 2026</span></div>
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <div class="review-title">MUST BUY</div>
+              <p class="review-copy">Glasses are amazing and sit perfectly on the face. Quality is great and you won't find this sort of design anywhere else. They are unique and elevate the look. Customer service is great and shipping was surprisingly quick.</p>
+            </article>
+            <article class="review-card">
+              <div class="review-top"><span class="review-name">PPolina Bishenden</span><span class="review-date">September 17, 2026</span></div>
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <div class="review-title">Wow!</div>
+              <p class="review-copy">Wow! What beautiful glasses, exactly what I imagined. Gradient, tint, rimless... beautiful. I did not think it would be possible on my prescription but it was! Can't wait to wear them on my holiday!</p>
+            </article>
+            <article class="review-card">
+              <div class="review-top"><span class="review-name">Larenzo Abiy-Berhanu</span><span class="review-date">September 15, 2026</span></div>
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <div class="review-title">Glasses fantastic</div>
+              <p class="review-copy">Glasses fantastic.</p>
+            </article>
+            <article class="review-card">
+              <div class="review-top"><span class="review-name">Givenchy Abani</span><span class="review-date">September 12, 2026</span></div>
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <div class="review-title">Absolutely professional</div>
+              <p class="review-copy">Absolutely professional. Had a consultation first before deciding which glasses to get.</p>
+            </article>
+            <article class="review-card">
+              <div class="review-top"><span class="review-name">Tahir Hussain</span><span class="review-date">September 8, 2026</span></div>
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <div class="review-title">Perfect Frames and Excellent Customer Service</div>
+              <p class="review-copy">Had a consultation with Lux Frames and found the team to be very helpful. They took the time to advise me on which lens shape would best suit my face and recommended some excellent frames.</p>
+            </article>
+            <article class="review-card">
+              <div class="review-top"><span class="review-name">Ismail Dokrat</span><span class="review-date">September 3, 2026</span></div>
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <div class="review-title">Quick service and very helpful</div>
+              <p class="review-copy">Quick service and very helpful when deciding which frames would suit my face best. Would 100% recommend to anyone interested in rimless glasses.</p>
+            </article>
+            <article class="review-card">
+              <div class="review-top"><span class="review-name">Abdul D</span><span class="review-date">September 3, 2026</span></div>
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <div class="review-title">Amazing experience</div>
+              <p class="review-copy">Amazing experience. Lux frames really put the lux in luxurious. Glasses are amazing, sits really amazingly on your face and naturally elevates your look to a whole another level. Great customer service throughout the consultation process.</p>
+            </article>
+            <article class="review-card">
+              <div class="review-top"><span class="review-name">Najib Maye</span><span class="review-date">August 28, 2026</span></div>
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <div class="review-title">Quality frames, reasonably priced</div>
+              <p class="review-copy">What more can i say, quality frames and reasonably priced.</p>
+            </article>
+            <article class="review-card">
+              <div class="review-top"><span class="review-name">Mohamed Ali Sharif</span><span class="review-date">August 26, 2026</span></div>
+              <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
+              <div class="review-title">Grey faded, and all white with tint during sunlight</div>
+              <p class="review-copy">The colors and frame options were so many, had to get help by the professional to make a decision, and made the perfect one! Everything was smooth and quick.</p>
+            </article>
+            <div class="review-dots" aria-label="Review carousel navigation"></div>
+          </div>
 
           <a class="hero-cta" href="https://wa.me/447398481779?text=Hi%20I%27d%20like%20help%20finding%20the%20right%20custom%20rimless%20glasses%20for%20my%20face%20shape." target="_blank" rel="noopener noreferrer">
             <svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.6a8.9 8.9 0 0 1-13.2 7.8L3 21l1.6-4.7A8.9 8.9 0 1 1 21 11.6Z"/><path d="M8.2 8.2c.3-.7.6-.7.9-.7h.6c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5 0 .7l-.6.8c-.2.2-.2.4 0 .7.5.9 1.2 1.7 2.1 2.2.3.2.5.2.7 0l.9-1.1c.2-.2.4-.3.7-.2l1.8.8c.3.1.5.3.5.5 0 .2-.1 1.1-.7 1.6-.5.6-1.3.9-2.1.9-1.2 0-2.7-.5-4.4-2-2-1.7-3.3-3.8-3.4-5.3 0-.5.1-.9.2-1.1Z"/></svg>
@@ -426,5 +500,47 @@
     </div>
   </footer>
 </div>
+<script>
+  (() => {
+    const cards = Array.from(document.querySelectorAll('.review-card'));
+    const dotsWrap = document.querySelector('.review-dots');
+    if (!cards.length || !dotsWrap) return;
+    let index = 0;
+    let timer;
+
+    cards.forEach((_, i) => {
+      const dot = document.createElement('button');
+      dot.className = 'review-dot' + (i === 0 ? ' active' : '');
+      dot.type = 'button';
+      dot.setAttribute('aria-label', 'Show review ' + (i + 1));
+      dot.addEventListener('click', () => {
+        show(i);
+        restart();
+      });
+      dotsWrap.appendChild(dot);
+    });
+
+    const dots = Array.from(dotsWrap.children);
+
+    function show(next) {
+      cards[index].classList.remove('active');
+      dots[index].classList.remove('active');
+      index = next;
+      cards[index].classList.add('active');
+      dots[index].classList.add('active');
+    }
+
+    function advance() {
+      show((index + 1) % cards.length);
+    }
+
+    function restart() {
+      clearInterval(timer);
+      timer = setInterval(advance, 5000);
+    }
+
+    restart();
+  })();
+</script>
 </body>
 </html>

@@ -118,18 +118,16 @@
   .trustpilot-link:hover{border-bottom-color:#111}
   .review-stars{font-size:17px;line-height:1;letter-spacing:1.5px;color:#111}
   .review-label{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#4f4a44}
-  .review-carousel{max-width:620px;margin:10px auto 20px;position:relative;min-height:154px}
-  .review-card{position:absolute;inset:0;padding:18px 20px;border:1px solid var(--line);border-radius:8px;background:rgba(246,244,240,.72);text-align:left;opacity:0;transform:translateY(5px);transition:opacity .45s ease,transform .45s ease;pointer-events:none}
-  .review-card.active{opacity:1;transform:translateY(0);pointer-events:auto}
+  .review-carousel{max-width:620px;margin:10px auto 20px;position:relative;min-height:154px;overflow:hidden;perspective:1000px}
+  .review-card{position:absolute;inset:0;padding:18px 20px;border:1px solid var(--line);border-radius:8px;background:rgba(246,244,240,.72);text-align:left;opacity:0;transform:translateX(38px) rotateY(-10deg) scale(.985);transform-origin:center center;transition:opacity .55s ease,transform .65s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+  .review-card.active{opacity:1;transform:translateX(0) rotateY(0deg) scale(1);pointer-events:auto;z-index:2}
+  .review-card.exiting-left{opacity:0;transform:translateX(-38px) rotateY(10deg) scale(.985);z-index:1}
   .review-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:8px}
   .review-name{font-size:13px;font-weight:600;color:#222}
   .review-date{font-size:11px;color:#8b867e;white-space:nowrap}
   .review-card .stars{font-size:13px;letter-spacing:1.5px;margin-bottom:8px;color:#111}
   .review-title{font-size:14px;font-weight:600;margin-bottom:6px;color:#24211f}
   .review-copy{font-size:12px;line-height:1.55;color:#68625c;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
-  .review-dots{display:flex;justify-content:center;gap:6px;margin-top:8px}
-  .review-dot{width:5px;height:5px;border-radius:50%;border:0;background:#c8c3bc;padding:0;cursor:pointer}
-  .review-dot.active{background:#333}
 
   /* Video placeholder */
   .video-card{
@@ -339,7 +337,7 @@
 
           <a class="social-proof trustpilot-link" id="reviews" href="https://trustpilot.com/review/luxframes.com" target="_blank" rel="noopener noreferrer" aria-label="Read Lux Frames reviews">
             <span class="review-stars" aria-hidden="true">★★★★★</span>
-            <span class="review-label">5 Star Reviews</span>
+            <span class="review-label">5 Star Reviews on Trustpilot</span>
           </a>
 
           <div class="review-carousel" aria-label="Customer reviews">
@@ -397,7 +395,6 @@
               <div class="review-title">Grey faded, and all white with tint during sunlight</div>
               <p class="review-copy">The colors and frame options were so many, had to get help by the professional to make a decision, and made the perfect one! Everything was smooth and quick.</p>
             </article>
-            <div class="review-dots" aria-label="Review carousel navigation"></div>
           </div>
 
           <a class="hero-cta" href="https://wa.me/447398481779?text=Hi%20I%27d%20like%20help%20finding%20the%20right%20custom%20rimless%20glasses%20for%20my%20face%20shape." target="_blank" rel="noopener noreferrer">
@@ -503,43 +500,29 @@
 <script>
   (() => {
     const cards = Array.from(document.querySelectorAll('.review-card'));
-    const dotsWrap = document.querySelector('.review-dots');
-    if (!cards.length || !dotsWrap) return;
+    if (cards.length < 2) return;
+
     let index = 0;
-    let timer;
-
-    cards.forEach((_, i) => {
-      const dot = document.createElement('button');
-      dot.className = 'review-dot' + (i === 0 ? ' active' : '');
-      dot.type = 'button';
-      dot.setAttribute('aria-label', 'Show review ' + (i + 1));
-      dot.addEventListener('click', () => {
-        show(i);
-        restart();
-      });
-      dotsWrap.appendChild(dot);
-    });
-
-    const dots = Array.from(dotsWrap.children);
-
-    function show(next) {
-      cards[index].classList.remove('active');
-      dots[index].classList.remove('active');
-      index = next;
-      cards[index].classList.add('active');
-      dots[index].classList.add('active');
-    }
 
     function advance() {
-      show((index + 1) % cards.length);
+      const current = cards[index];
+      const nextIndex = (index + 1) % cards.length;
+      const next = cards[nextIndex];
+
+      current.classList.remove('active');
+      current.classList.add('exiting-left');
+
+      next.classList.remove('exiting-left');
+      next.classList.add('active');
+
+      setTimeout(() => {
+        current.classList.remove('exiting-left');
+      }, 700);
+
+      index = nextIndex;
     }
 
-    function restart() {
-      clearInterval(timer);
-      timer = setInterval(advance, 5000);
-    }
-
-    restart();
+    setInterval(advance, 4500);
   })();
 </script>
 </body>

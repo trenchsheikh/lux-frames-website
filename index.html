@@ -12,7 +12,7 @@
   :root{
     --ink:#111111;
     --muted:#66615c;
-    --paper:#fbfaf7;
+    --paper:#fffdf9;
     --line:#e8e4df;
     --card:#f5f3ef;
     --green:#0f7a43;
@@ -23,7 +23,9 @@
   body{
     font-family:"Inter",Arial,sans-serif;
     color:var(--ink);
-    background:var(--paper);
+    background:
+      linear-gradient(rgba(222,210,190,.25),rgba(222,210,190,.25)),
+      #ffffff;
     -webkit-font-smoothing:antialiased;
   }
   a{text-decoration:none;color:inherit}
@@ -43,7 +45,7 @@
     display:flex;
     align-items:center;
     border-bottom:1px solid rgba(17,17,17,.05);
-    background:rgba(251,250,247,.94);
+    background:rgba(255,253,249,.94);
     backdrop-filter:blur(14px);
     position:sticky;top:0;z-index:20;
   }

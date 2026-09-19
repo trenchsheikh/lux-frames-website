@@ -113,11 +113,21 @@
   .hero-cta .arrow{margin-left:auto;font-size:22px;line-height:1}
   .micro{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#8b867e;margin-top:10px;text-align:center}
   .social-proof{display:flex;align-items:center;justify-content:center;gap:10px;margin:24px 0 10px}
-  .trustpilot-cta-row{display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap}
-  .trustpilot-link{width:max-content;margin:0;padding:4px 0 2px;border-bottom:1px solid #8f8981;transition:.2s ease}
-  .trustpilot-link:hover{border-bottom-color:#111}
-  .trustpilot-button{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:8px 12px;border:1px solid #1b1b1b;border-radius:6px;background:#111;color:#fff;font-size:10px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;transition:.2s ease}
-  .trustpilot-button:hover{background:#000;transform:translateY(-1px)}
+  .trustpilot-link{
+    width:max-content;
+    margin-left:auto;
+    margin-right:auto;
+    padding:10px 14px;
+    border:1px solid rgba(15,122,67,.18);
+    border-radius:7px;
+    background:var(--green);
+    color:#fff;
+    transition:.2s ease;
+    box-shadow:0 8px 20px rgba(15,122,67,.12);
+  }
+  .trustpilot-link:hover{background:var(--green-dark);transform:translateY(-1px)}
+  .review-stars{color:#fff}
+  .review-label{color:#fff}
   .review-stars{font-size:17px;line-height:1;letter-spacing:1.5px;color:#111}
   .review-label{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#4f4a44}
   .review-carousel{max-width:620px;margin:10px auto 20px;position:relative;min-height:154px;overflow:hidden;perspective:1000px;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
@@ -298,8 +308,7 @@
     .usp-row{grid-template-columns:repeat(3,1fr)}
     .usp-sub{display:none}
     .social-proof strong{font-size:15px}
-    .trustpilot-cta-row{gap:8px}
-    .trustpilot-button{padding:7px 10px;font-size:9px}
+
     .section h2,.why h2{font-size:27px}
     .route{gap:14px}
     .route svg{width:28px;height:28px}
@@ -400,16 +409,10 @@
         <section class="reviews-section" id="reviews">
           <div class="shell">
             <div class="reviews-heading">
-              <div class="trustpilot-cta-row">
-                <a class="social-proof trustpilot-link" href="https://trustpilot.com/review/luxframes.com" target="_blank" rel="noopener noreferrer" aria-label="Read Lux Frames reviews">
-                  <span class="review-stars" aria-hidden="true">★★★★★</span>
-                  <span class="review-label">5 Star Reviews on Trustpilot</span>
-                </a>
-                <a class="trustpilot-button" href="https://trustpilot.com/review/luxframes.com" target="_blank" rel="noopener noreferrer" aria-label="View Lux Frames reviews on Trustpilot">
-                  View Reviews
-                  <span aria-hidden="true">↗</span>
-                </a>
-              </div>
+              <a class="social-proof trustpilot-link" href="https://trustpilot.com/review/luxframes.com" target="_blank" rel="noopener noreferrer" aria-label="Read Lux Frames reviews on Trustpilot">
+                <span class="review-stars" aria-hidden="true">★★★★★</span>
+                <span class="review-label">5 Star Reviews on Trustpilot</span>
+              </a>
               <div class="reviews-count">294 five-star reviews</div>
             </div>
 

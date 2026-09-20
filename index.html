@@ -172,7 +172,7 @@
     height:100%;
     min-height:0;
     aspect-ratio:16 / 9;
-    object-fit:cover;
+    border:0;
     background:#000;
     border-radius:7px;
   }
@@ -364,10 +364,13 @@
 
           <div class="hero-video-wrap">
             <div class="video-card video-live">
-              <video class="vsl-video" controls playsinline preload="metadata">
-                <source src="IMG_1127.mov" type="video/quicktime" />
-                Your browser does not support the video tag.
-              </video>
+              <iframe
+                class="vsl-video"
+                src="https://player.mux.com/uB5JDm8Z02Q2wFyDBcbDhVOmP00dkT8JeVu0201aDetRoC4"
+                title="Lux Frames VSL"
+                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                allowfullscreen
+              ></iframe>
             </div>
             <div class="caption-under">Watch to see how we help you find your perfect pair</div>
           </div>

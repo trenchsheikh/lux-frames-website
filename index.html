@@ -399,32 +399,31 @@
     .route svg{width:28px;height:28px}
   }
 </style>
-<!-- Meta Pixel: loaded only after marketing consent -->
+<!-- Meta Pixel Code -->
 <script>
-  window.loadLuxMetaPixel = function () {
-    if (window.__luxMetaPixelLoaded) return;
-    window.__luxMetaPixelLoaded = true;
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
 
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
+var luxMetaConsent = null;
+try {
+  luxMetaConsent = localStorage.getItem('luxframes_cookie_consent_v1');
+} catch (e) {}
 
-    fbq('init', '876621671699420');
-    fbq('track', 'PageView');
-  };
-
-  try {
-    if (localStorage.getItem('luxframes_cookie_consent_v1') === 'accepted') {
-      window.loadLuxMetaPixel();
-    }
-  } catch (e) {}
+/*
+  Load and initialise the pixel on every visit so Meta can detect it,
+  but keep tracking revoked until the visitor accepts marketing cookies.
+*/
+fbq('consent', luxMetaConsent === 'accepted' ? 'grant' : 'revoke');
+fbq('init', '876621671699420');
+fbq('track', 'PageView');
 </script>
-<!-- End Meta Pixel -->
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <div class="page">
@@ -755,7 +754,7 @@
     <p>Depending on the activity, we process information because it is necessary to take steps at your request or perform a contract with you, to comply with a legal obligation, for our legitimate interests in running and protecting our business, or because you have given consent. Where prescription information constitutes health data, we process it only where permitted by applicable data protection law and, where required, with your explicit consent.</p>
 
     <h3>Cookies and similar technologies</h3>
-    <p>We use essential browser storage to remember your cookie preference. Meta Pixel is only loaded after you choose to accept non-essential tracking. Our Mux video players are configured with cookies disabled. You can reopen Cookie Settings from the footer at any time.</p>
+    <p>We use essential browser storage to remember your cookie preference. Meta Pixel starts with marketing tracking disabled and is enabled only after you choose to accept non-essential tracking. Our Mux video players are configured with cookies disabled. You can reopen Cookie Settings from the footer at any time.</p>
 
     <h3>Who we share information with</h3>
     <p>We may use service providers to operate our website and business, including Meta/WhatsApp for communications and advertising measurement, Mux for video delivery, website hosting providers, and delivery or payment providers where applicable. We only share information where needed for the relevant service, business purpose or legal requirement.</p>
@@ -797,10 +796,10 @@
       try { localStorage.setItem(key, value); } catch (e) {}
       banner.hidden = true;
 
-      if (value === 'accepted') {
-        window.loadLuxMetaPixel && window.loadLuxMetaPixel();
-      } else if (window.fbq) {
-        try { window.fbq('consent', 'revoke'); } catch (e) {}
+      if (window.fbq) {
+        try {
+          window.fbq('consent', value === 'accepted' ? 'grant' : 'revoke');
+        } catch (e) {}
       }
     }
 

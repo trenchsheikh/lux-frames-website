@@ -8,6 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/@mux/mux-player" defer></script>
 <style>
   :root{
     --ink:#111111;
@@ -130,9 +131,18 @@
   .trustpilot-link .review-label{color:#fff!important}
   .review-stars{font-size:17px;line-height:1;letter-spacing:1.5px;color:#111}
   .review-label{font-size:12px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#4f4a44}
-  .review-carousel{max-width:620px;margin:10px auto 20px;position:relative;min-height:154px;overflow:hidden;perspective:1000px;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
+  .review-carousel{max-width:700px;margin:10px auto 20px;position:relative;min-height:154px;overflow:hidden;perspective:1000px;touch-action:pan-y;user-select:none;-webkit-user-select:none;cursor:grab}
   .review-carousel:active{cursor:grabbing}
-  .review-card{position:absolute;inset:0;padding:18px 20px;border:1px solid var(--line);border-radius:8px;background:rgba(246,244,240,.72);text-align:left;opacity:0;transform:translateX(38px) rotateY(-10deg) scale(.985);transform-origin:center center;transition:opacity .55s ease,transform .65s cubic-bezier(.22,.61,.36,1);pointer-events:none}
+  .review-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:34px;height:34px;border-radius:50%;border:1px solid #d8d2ca;
+    background:rgba(255,255,255,.96);color:#222;display:grid;place-items:center;
+    font-size:18px;line-height:1;cursor:pointer;z-index:5;box-shadow:0 6px 18px rgba(0,0,0,.08)
+  }
+  .review-arrow:hover{background:#111;color:#fff;border-color:#111}
+  .review-prev{left:2px}
+  .review-next{right:2px}
+  .review-card{position:absolute;inset:0 42px;padding:18px 20px;border:1px solid var(--line);border-radius:8px;background:rgba(246,244,240,.72);text-align:left;opacity:0;transform:translateX(38px) rotateY(-10deg) scale(.985);transform-origin:center center;transition:opacity .55s ease,transform .65s cubic-bezier(.22,.61,.36,1);pointer-events:none}
   .review-card.active{opacity:1;transform:translateX(0) rotateY(0deg) scale(1);pointer-events:auto;z-index:2}
   .review-card.exiting-left{opacity:0;transform:translateX(-38px) rotateY(10deg) scale(.985);z-index:1}
   .review-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start;margin-bottom:8px}
@@ -227,7 +237,8 @@
     background:#111;
     box-shadow:0 10px 26px rgba(0,0,0,.10);
   }
-  .testimonial-video-card iframe{display:block;width:100%;height:100%;border:0}
+  .testimonial-video-card iframe,
+  .testimonial-video-card mux-player{display:block;width:100%;height:100%;border:0;--media-object-fit:cover}
   .testimonial-arrow{
     position:absolute;top:50%;transform:translateY(-50%);
     width:34px;height:34px;border-radius:50%;border:1px solid #d8d2ca;
@@ -298,7 +309,8 @@
     .hero-cta{font-size:14px;padding:15px 16px;margin-top:14px}
     .social-proof{justify-content:center}
     .review-carousel{min-height:170px;margin-bottom:18px}
-    .review-card{padding:16px}
+    .review-card{inset:0 34px;padding:16px}
+    .review-arrow{width:30px;height:30px;font-size:16px}
     .review-title{font-size:13px}
     .review-copy{font-size:11.5px}
 
@@ -452,6 +464,7 @@
             </div>
 
             <div class="review-carousel" aria-label="Customer reviews">
+                <button class="review-arrow review-prev" type="button" aria-label="Previous customer review">‹</button>
                 <article class="review-card active">
                   <div class="review-top"><span class="review-name">Zayn</span><span class="review-date">September 18, 2026</span></div>
                   <div class="stars" aria-label="5 out of 5 stars">★★★★★</div>
@@ -506,6 +519,7 @@
                   <div class="review-title">Grey faded, and all white with tint during sunlight</div>
                   <p class="review-copy">The colors and frame options were so many, had to get help by the professional to make a decision, and made the perfect one! Everything was smooth and quick.</p>
                 </article>
+                <button class="review-arrow review-next" type="button" aria-label="Next customer review">›</button>
               </div>
           </div>
         </section>
@@ -521,40 +535,40 @@
             <button class="testimonial-arrow testimonial-prev" type="button" aria-label="Previous testimonial">‹</button>
             <div class="testimonial-track">
               <div class="testimonial-video-card">
-                <iframe
-                  src="https://player.mux.com/k019YIWJyWuuzsENxEmWY97IPCvF7RSDNtSoytBZdiEA"
-                  title="Lux Frames customer testimonial 1"
-                  loading="lazy"
-                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                  allowfullscreen
-                ></iframe>
+                <mux-player
+                  class="testimonial-player"
+                  playback-id="k019YIWJyWuuzsENxEmWY97IPCvF7RSDNtSoytBZdiEA"
+                  metadata-video-title="Lux Frames customer testimonial 1"
+                  playsinline
+                  preload="metadata"
+                ></mux-player>
               </div>
               <div class="testimonial-video-card">
-                <iframe
-                  src="https://player.mux.com/jAde3jXqDXjqmCzL302r2J01dNqHYNLueoQDGi02dIIb4g"
-                  title="Lux Frames customer testimonial 2"
-                  loading="lazy"
-                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                  allowfullscreen
-                ></iframe>
+                <mux-player
+                  class="testimonial-player"
+                  playback-id="jAde3jXqDXjqmCzL302r2J01dNqHYNLueoQDGi02dIIb4g"
+                  metadata-video-title="Lux Frames customer testimonial 2"
+                  playsinline
+                  preload="metadata"
+                ></mux-player>
               </div>
               <div class="testimonial-video-card">
-                <iframe
-                  src="https://player.mux.com/VtigkiPc89xQ01jlGwdpHNAKm01X6Jth01TcHy0023DTsuQ"
-                  title="Lux Frames customer testimonial 3"
-                  loading="lazy"
-                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                  allowfullscreen
-                ></iframe>
+                <mux-player
+                  class="testimonial-player"
+                  playback-id="VtigkiPc89xQ01jlGwdpHNAKm01X6Jth01TcHy0023DTsuQ"
+                  metadata-video-title="Lux Frames customer testimonial 3"
+                  playsinline
+                  preload="metadata"
+                ></mux-player>
               </div>
               <div class="testimonial-video-card">
-                <iframe
-                  src="https://player.mux.com/J02WADRkM8pqwt02g1HiS00can9B015yZlgq01100H12Ytk5k"
-                  title="Lux Frames customer testimonial 4"
-                  loading="lazy"
-                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                  allowfullscreen
-                ></iframe>
+                <mux-player
+                  class="testimonial-player"
+                  playback-id="J02WADRkM8pqwt02g1HiS00can9B015yZlgq01100H12Ytk5k"
+                  metadata-video-title="Lux Frames customer testimonial 4"
+                  playsinline
+                  preload="metadata"
+                ></mux-player>
               </div>
             </div>
             <button class="testimonial-arrow testimonial-next" type="button" aria-label="Next testimonial">›</button>
@@ -632,7 +646,9 @@
   (() => {
     const carousel = document.querySelector('.review-carousel');
     const cards = Array.from(document.querySelectorAll('.review-card'));
-    if (!carousel || cards.length < 2) return;
+    const prevBtn = document.querySelector('.review-prev');
+    const nextBtn = document.querySelector('.review-next');
+    if (!carousel || cards.length < 2 || !prevBtn || !nextBtn) return;
 
     let index = 0;
     let timer;
@@ -711,6 +727,16 @@
       restartAutoplay();
     }
 
+    nextBtn.addEventListener('click', () => {
+      next();
+      restartAutoplay();
+    });
+
+    prevBtn.addEventListener('click', () => {
+      prev();
+      restartAutoplay();
+    });
+
     carousel.addEventListener('touchstart', e => onStart(e.touches[0].clientX), {passive:true});
     carousel.addEventListener('touchmove', e => onMove(e.touches[0].clientX), {passive:true});
     carousel.addEventListener('touchend', onEnd);
@@ -726,6 +752,7 @@
     const carousel = document.querySelector('.testimonial-carousel');
     const track = document.querySelector('.testimonial-track');
     const cards = Array.from(document.querySelectorAll('.testimonial-video-card'));
+    const players = Array.from(document.querySelectorAll('.testimonial-player'));
     const prev = document.querySelector('.testimonial-prev');
     const next = document.querySelector('.testimonial-next');
     if (!carousel || !track || !cards.length || !prev || !next) return;
@@ -735,6 +762,7 @@
     let startX = 0;
     let deltaX = 0;
     let dragging = false;
+    let playingCount = 0;
 
     function cardStep() {
       const card = cards[0];
@@ -750,25 +778,71 @@
       return Math.max(0, cards.length - visibleCount());
     }
 
-    function go(to) {
+    function pausePlayers() {
+      players.forEach(player => {
+        if (!player.paused) player.pause();
+      });
+    }
+
+    function go(to, pauseVideo = false) {
+      if (pauseVideo) pausePlayers();
       const max = maxIndex();
       index = to > max ? 0 : to < 0 ? max : to;
       track.style.transform = 'translateX(' + (-index * cardStep()) + 'px)';
     }
 
-    function restart() {
+    function stopRotation() {
       clearInterval(timer);
+      timer = null;
+    }
+
+    function restart() {
+      stopRotation();
+      if (playingCount > 0) return;
       timer = setInterval(() => go(index + 1), 6000);
     }
 
-    next.addEventListener('click', () => { go(index + 1); restart(); });
-    prev.addEventListener('click', () => { go(index - 1); restart(); });
+    players.forEach(player => {
+      let countedAsPlaying = false;
+
+      player.addEventListener('play', () => {
+        if (!countedAsPlaying) {
+          countedAsPlaying = true;
+          playingCount += 1;
+        }
+        players.forEach(other => {
+          if (other !== player && !other.paused) other.pause();
+        });
+        stopRotation();
+      });
+
+      const markStopped = () => {
+        if (countedAsPlaying) {
+          countedAsPlaying = false;
+          playingCount = Math.max(0, playingCount - 1);
+        }
+        restart();
+      };
+
+      player.addEventListener('pause', markStopped);
+      player.addEventListener('ended', markStopped);
+    });
+
+    next.addEventListener('click', () => {
+      go(index + 1, true);
+      restart();
+    });
+
+    prev.addEventListener('click', () => {
+      go(index - 1, true);
+      restart();
+    });
 
     carousel.addEventListener('touchstart', e => {
       dragging = true;
       startX = e.touches[0].clientX;
       deltaX = 0;
-      clearInterval(timer);
+      stopRotation();
     }, {passive:true});
 
     carousel.addEventListener('touchmove', e => {
@@ -779,7 +853,9 @@
     carousel.addEventListener('touchend', () => {
       if (!dragging) return;
       dragging = false;
-      if (Math.abs(deltaX) > 45) deltaX < 0 ? go(index + 1) : go(index - 1);
+      if (Math.abs(deltaX) > 45) {
+        deltaX < 0 ? go(index + 1, true) : go(index - 1, true);
+      }
       restart();
     });
 

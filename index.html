@@ -212,6 +212,31 @@
   .step h3{font-size:15px;font-weight:500;margin-bottom:8px}
   .step p{font-size:13px;color:#77716a;line-height:1.55}
 
+  .video-testimonials{margin:42px auto 8px;max-width:980px;text-align:center}
+  .video-testimonials-head{margin-bottom:20px}
+  .video-testimonials-head h3{font-size:24px;font-weight:400;letter-spacing:-.025em;margin-top:7px}
+  .video-testimonials-head p{font-size:12px;color:#817a72;margin-top:7px}
+  .testimonial-carousel{position:relative;overflow:hidden;padding:4px 44px 14px}
+  .testimonial-track{display:flex;gap:16px;transition:transform .65s cubic-bezier(.22,.61,.36,1);will-change:transform}
+  .testimonial-video-card{
+    flex:0 0 248px;
+    aspect-ratio:9 / 16;
+    border:1px solid #ded9d2;
+    border-radius:12px;
+    overflow:hidden;
+    background:#111;
+    box-shadow:0 10px 26px rgba(0,0,0,.10);
+  }
+  .testimonial-video-card iframe{display:block;width:100%;height:100%;border:0}
+  .testimonial-arrow{
+    position:absolute;top:50%;transform:translateY(-50%);
+    width:34px;height:34px;border-radius:50%;border:1px solid #d8d2ca;
+    background:rgba(255,255,255,.94);color:#222;display:grid;place-items:center;
+    font-size:18px;line-height:1;cursor:pointer;z-index:3;box-shadow:0 6px 18px rgba(0,0,0,.08)
+  }
+  .testimonial-arrow:hover{background:#111;color:#fff;border-color:#111}
+  .testimonial-prev{left:2px}
+  .testimonial-next{right:2px}
   .route-card{margin-top:36px;background:#f6f4f0;border:1px solid #efebe5;border-radius:4px;display:grid;grid-template-columns:1fr 1fr;text-align:center}
   .route{padding:26px 28px;display:flex;gap:20px;align-items:flex-start;justify-content:center}
   .route + .route{border-left:1px solid #ded9d2}
@@ -284,6 +309,9 @@
     .step{padding:18px 0 18px 52px}
     .step + .step{border-left:0;border-top:1px solid var(--line)}
     .num{position:absolute;left:0;top:18px;margin:0}
+    .video-testimonials{margin-top:34px}
+    .testimonial-carousel{padding:4px 34px 12px}
+    .testimonial-video-card{flex-basis:220px}
     .route-card{grid-template-columns:1fr}
     .route + .route{border-left:0;border-top:1px solid #ded9d2}
     .route{padding:22px 18px;flex-direction:column;align-items:center;text-align:center}
@@ -310,6 +338,10 @@
     .social-proof strong{font-size:15px}
 
     .section h2,.why h2{font-size:27px}
+    .testimonial-carousel{padding:4px 24px 12px}
+    .testimonial-video-card{flex-basis:min(74vw,260px)}
+    .testimonial-arrow{width:30px;height:30px;font-size:16px}
+    .video-testimonials-head h3{font-size:21px}
     .route{gap:14px}
     .route svg{width:28px;height:28px}
   }
@@ -478,6 +510,57 @@
           </div>
         </section>
 
+        <section class="video-testimonials" aria-label="Video testimonials">
+          <div class="video-testimonials-head">
+            <div class="eyebrow">Customer Stories</div>
+            <h3>See Our Frames on Real Customers.</h3>
+            <p>Swipe through real Lux Frames customer videos.</p>
+          </div>
+
+          <div class="testimonial-carousel">
+            <button class="testimonial-arrow testimonial-prev" type="button" aria-label="Previous testimonial">‹</button>
+            <div class="testimonial-track">
+              <div class="testimonial-video-card">
+                <iframe
+                  src="https://player.mux.com/k019YIWJyWuuzsENxEmWY97IPCvF7RSDNtSoytBZdiEA"
+                  title="Lux Frames customer testimonial 1"
+                  loading="lazy"
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="testimonial-video-card">
+                <iframe
+                  src="https://player.mux.com/jAde3jXqDXjqmCzL302r2J01dNqHYNLueoQDGi02dIIb4g"
+                  title="Lux Frames customer testimonial 2"
+                  loading="lazy"
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="testimonial-video-card">
+                <iframe
+                  src="https://player.mux.com/VtigkiPc89xQ01jlGwdpHNAKm01X6Jth01TcHy0023DTsuQ"
+                  title="Lux Frames customer testimonial 3"
+                  loading="lazy"
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <div class="testimonial-video-card">
+                <iframe
+                  src="https://player.mux.com/J02WADRkM8pqwt02g1HiS00can9B015yZlgq01100H12Ytk5k"
+                  title="Lux Frames customer testimonial 4"
+                  loading="lazy"
+                  allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
+                  allowfullscreen
+                ></iframe>
+              </div>
+            </div>
+            <button class="testimonial-arrow testimonial-next" type="button" aria-label="Next testimonial">›</button>
+          </div>
+        </section>
+
         <div class="route-card" id="visit">
           <div class="route">
             <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5"><path d="M12 22s7-6.3 7-13A7 7 0 1 0 5 9c0 6.7 7 13 7 13Z"/><circle cx="12" cy="9" r="2"/></svg>
@@ -637,6 +720,71 @@
     window.addEventListener('mouseup', onEnd);
 
     restartAutoplay();
+  })();
+
+  (() => {
+    const carousel = document.querySelector('.testimonial-carousel');
+    const track = document.querySelector('.testimonial-track');
+    const cards = Array.from(document.querySelectorAll('.testimonial-video-card'));
+    const prev = document.querySelector('.testimonial-prev');
+    const next = document.querySelector('.testimonial-next');
+    if (!carousel || !track || !cards.length || !prev || !next) return;
+
+    let index = 0;
+    let timer;
+    let startX = 0;
+    let deltaX = 0;
+    let dragging = false;
+
+    function cardStep() {
+      const card = cards[0];
+      const styles = getComputedStyle(track);
+      return card.getBoundingClientRect().width + parseFloat(styles.gap || 16);
+    }
+
+    function visibleCount() {
+      return Math.max(1, Math.floor((carousel.clientWidth - 88) / cardStep()));
+    }
+
+    function maxIndex() {
+      return Math.max(0, cards.length - visibleCount());
+    }
+
+    function go(to) {
+      const max = maxIndex();
+      index = to > max ? 0 : to < 0 ? max : to;
+      track.style.transform = 'translateX(' + (-index * cardStep()) + 'px)';
+    }
+
+    function restart() {
+      clearInterval(timer);
+      timer = setInterval(() => go(index + 1), 6000);
+    }
+
+    next.addEventListener('click', () => { go(index + 1); restart(); });
+    prev.addEventListener('click', () => { go(index - 1); restart(); });
+
+    carousel.addEventListener('touchstart', e => {
+      dragging = true;
+      startX = e.touches[0].clientX;
+      deltaX = 0;
+      clearInterval(timer);
+    }, {passive:true});
+
+    carousel.addEventListener('touchmove', e => {
+      if (!dragging) return;
+      deltaX = e.touches[0].clientX - startX;
+    }, {passive:true});
+
+    carousel.addEventListener('touchend', () => {
+      if (!dragging) return;
+      dragging = false;
+      if (Math.abs(deltaX) > 45) deltaX < 0 ? go(index + 1) : go(index - 1);
+      restart();
+    });
+
+    window.addEventListener('resize', () => go(index));
+    restart();
   })();
 </script>
 </body>

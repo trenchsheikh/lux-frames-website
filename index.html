@@ -277,6 +277,43 @@
   .footer-links{display:flex;gap:28px;font-size:12px;color:#5f5a54}
   .footer-brand{text-align:center}
   .copyright{font-size:11px;color:#8c867f}
+  .footer-links button{border:0;background:transparent;color:inherit;font:inherit;cursor:pointer;padding:0}
+  .footer-links button:hover,.footer-links a:hover{text-decoration:underline}
+
+  /* Cookie consent */
+  .cookie-banner{
+    position:fixed;left:20px;right:20px;bottom:20px;z-index:1000;
+    max-width:760px;margin:0 auto;padding:18px 20px;
+    background:#fff;border:1px solid #ded9d2;border-radius:10px;
+    box-shadow:0 18px 50px rgba(0,0,0,.16);
+  }
+  .cookie-banner[hidden]{display:none}
+  .cookie-inner{display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .cookie-copy{text-align:left;max-width:470px}
+  .cookie-copy strong{display:block;font-size:14px;font-weight:600;margin-bottom:5px}
+  .cookie-copy p{font-size:12px;line-height:1.5;color:#6f6961}
+  .cookie-copy button{border:0;background:transparent;text-decoration:underline;font:inherit;color:#444;cursor:pointer;padding:0}
+  .cookie-actions{display:flex;gap:8px;flex:none}
+  .cookie-btn{border:1px solid #222;border-radius:6px;padding:10px 13px;font-size:11px;font-weight:500;cursor:pointer;background:#fff;color:#111}
+  .cookie-btn.accept{background:#111;color:#fff}
+  .cookie-btn:hover{transform:translateY(-1px)}
+
+  /* Privacy policy modal */
+  .privacy-modal{position:fixed;inset:0;z-index:1100;background:rgba(0,0,0,.38);display:grid;place-items:center;padding:20px}
+  .privacy-modal[hidden]{display:none}
+  .privacy-panel{
+    width:min(760px,100%);max-height:min(82vh,760px);overflow:auto;
+    background:#fff;border:1px solid #ded9d2;border-radius:10px;
+    box-shadow:0 24px 70px rgba(0,0,0,.22);padding:28px;text-align:left;position:relative
+  }
+  .privacy-close{position:absolute;right:18px;top:16px;border:0;background:transparent;font-size:26px;line-height:1;cursor:pointer;color:#555}
+  .privacy-panel h2{font-size:28px;font-weight:400;letter-spacing:-.03em;margin-bottom:5px}
+  .privacy-updated{font-size:11px;color:#8b867e;margin-bottom:22px}
+  .privacy-panel h3{font-size:14px;font-weight:600;margin:20px 0 7px}
+  .privacy-panel p,.privacy-panel li{font-size:12px;line-height:1.65;color:#625d57}
+  .privacy-panel ul{padding-left:18px}
+  .privacy-panel a{text-decoration:underline}
+  body.privacy-open{overflow:hidden}
 
   /* Mobile */
   @media (max-width: 860px){
@@ -334,6 +371,10 @@
     .benefit:last-child{grid-column:1/-1;border-left:0}
     .footer-row{flex-direction:column;text-align:center}
     .footer-links{flex-wrap:wrap;justify-content:center}
+    .cookie-inner{flex-direction:column;align-items:stretch}
+    .cookie-actions{width:100%}
+    .cookie-btn{flex:1}
+    .privacy-panel{padding:24px 20px}
   }
   @media (max-width: 520px){
     .shell{width:calc(100% - 24px)}
@@ -358,27 +399,34 @@
     .route svg{width:28px;height:28px}
   }
 </style>
-<!-- Meta Pixel Code -->
+<!-- Meta Pixel: loaded only after marketing consent -->
 <script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '876621671699420');
-fbq('track', 'PageView');
+  window.loadLuxMetaPixel = function () {
+    if (window.__luxMetaPixelLoaded) return;
+    window.__luxMetaPixelLoaded = true;
+
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '876621671699420');
+    fbq('track', 'PageView');
+  };
+
+  try {
+    if (localStorage.getItem('luxframes_cookie_consent_v1') === 'accepted') {
+      window.loadLuxMetaPixel();
+    }
+  } catch (e) {}
 </script>
-<!-- End Meta Pixel Code -->
+<!-- End Meta Pixel -->
 </head>
 <body>
-<!-- Meta Pixel Code -->
-<noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=876621671699420&ev=PageView&noscript=1"
-/></noscript>
-<!-- End Meta Pixel Code -->
 <div class="page">
   <header>
     <div class="shell nav">
@@ -427,13 +475,14 @@ src="https://www.facebook.com/tr?id=876621671699420&ev=PageView&noscript=1"
 
           <div class="hero-video-wrap">
             <div class="video-card video-live">
-              <iframe
+              <mux-player
                 class="vsl-video"
-                src="https://player.mux.com/uB5JDm8Z02Q2wFyDBcbDhVOmP00dkT8JeVu0201aDetRoC4"
-                title="Lux Frames VSL"
-                allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture;"
-                allowfullscreen
-              ></iframe>
+                playback-id="uB5JDm8Z02Q2wFyDBcbDhVOmP00dkT8JeVu0201aDetRoC4"
+                metadata-video-title="Lux Frames VSL"
+                playsinline
+                preload="metadata"
+                disable-cookies
+              ></mux-player>
             </div>
             <div class="caption-under">Watch to see how we help you find your perfect pair</div>
           </div>
@@ -569,6 +618,7 @@ src="https://www.facebook.com/tr?id=876621671699420&ev=PageView&noscript=1"
                   metadata-video-title="Lux Frames customer testimonial 2"
                   playsinline
                   preload="metadata"
+                  disable-cookies
                 ></mux-player>
               </div>
               <div class="testimonial-video-card">
@@ -578,6 +628,7 @@ src="https://www.facebook.com/tr?id=876621671699420&ev=PageView&noscript=1"
                   metadata-video-title="Lux Frames customer testimonial 3"
                   playsinline
                   preload="metadata"
+                  disable-cookies
                 ></mux-player>
               </div>
               <div class="testimonial-video-card">
@@ -587,6 +638,7 @@ src="https://www.facebook.com/tr?id=876621671699420&ev=PageView&noscript=1"
                   metadata-video-title="Lux Frames customer testimonial 4"
                   playsinline
                   preload="metadata"
+                  disable-cookies
                 ></mux-player>
               </div>
             </div>
@@ -655,13 +707,129 @@ src="https://www.facebook.com/tr?id=876621671699420&ev=PageView&noscript=1"
 
   <footer>
     <div class="shell footer-row">
-      <div class="footer-links"><a href="#why">Why Rimless</a><a href="#how">How It Works</a></div>
+      <div class="footer-links">
+        <a href="#why">Why Rimless</a>
+        <a href="#how">How It Works</a>
+        <button type="button" id="privacy-open-footer">Privacy Policy</button>
+        <button type="button" id="cookie-settings">Cookie Settings</button>
+      </div>
       <div class="footer-brand"><img class="footer-logo" src="new-logo.png" alt="Lux Frames" /></div>
       <div class="copyright">© 2026 Lux Frames</div>
     </div>
   </footer>
 </div>
+
+<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie preferences" hidden>
+  <div class="cookie-inner">
+    <div class="cookie-copy">
+      <strong>Your privacy choices</strong>
+      <p>We use essential storage to remember your choice. With your permission, we also use Meta Pixel to measure advertising and website activity. <button type="button" id="privacy-open-cookie">Privacy Policy</button></p>
+    </div>
+    <div class="cookie-actions">
+      <button class="cookie-btn" id="cookie-reject" type="button">Reject non-essential</button>
+      <button class="cookie-btn accept" id="cookie-accept" type="button">Accept</button>
+    </div>
+  </div>
+</div>
+
+<div class="privacy-modal" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" hidden>
+  <div class="privacy-panel">
+    <button class="privacy-close" id="privacy-close" type="button" aria-label="Close privacy policy">×</button>
+    <h2 id="privacy-title">Privacy Policy</h2>
+    <div class="privacy-updated">Lux Frames Ltd · Last updated 21 September 2026</div>
+
+    <p>Lux Frames Ltd is the data controller for personal information collected through this website and our customer communications. This notice explains what we collect, why we use it, who we may share it with and the choices available to you.</p>
+
+    <h3>Information we collect</h3>
+    <ul>
+      <li>Contact and enquiry details you provide when you contact us, including through WhatsApp.</li>
+      <li>Order, appointment, delivery and customer service information.</li>
+      <li>Prescription information if you choose to provide it for a prescription glasses order.</li>
+      <li>Technical and advertising measurement data if you consent to Meta Pixel.</li>
+    </ul>
+
+    <h3>How we use your information</h3>
+    <p>We use personal information to respond to enquiries, arrange appointments, create and fulfil custom glasses orders, provide customer support, arrange delivery, keep appropriate business records, protect our website and services, and comply with legal obligations. If you consent to marketing measurement cookies, we also use Meta Pixel to understand advertising and website activity.</p>
+
+    <h3>Our lawful bases</h3>
+    <p>Depending on the activity, we process information because it is necessary to take steps at your request or perform a contract with you, to comply with a legal obligation, for our legitimate interests in running and protecting our business, or because you have given consent. Where prescription information constitutes health data, we process it only where permitted by applicable data protection law and, where required, with your explicit consent.</p>
+
+    <h3>Cookies and similar technologies</h3>
+    <p>We use essential browser storage to remember your cookie preference. Meta Pixel is only loaded after you choose to accept non-essential tracking. Our Mux video players are configured with cookies disabled. You can reopen Cookie Settings from the footer at any time.</p>
+
+    <h3>Who we share information with</h3>
+    <p>We may use service providers to operate our website and business, including Meta/WhatsApp for communications and advertising measurement, Mux for video delivery, website hosting providers, and delivery or payment providers where applicable. We only share information where needed for the relevant service, business purpose or legal requirement.</p>
+
+    <h3>International transfers</h3>
+    <p>Some service providers may process information outside the UK. Where data protection law requires it, we use or rely on appropriate safeguards for those transfers.</p>
+
+    <h3>How long we keep information</h3>
+    <p>We keep personal information only for as long as reasonably necessary for the purpose it was collected, including order fulfilment, customer service, accounting, legal and dispute-resolution requirements. Marketing consent can be withdrawn at any time.</p>
+
+    <h3>Your rights</h3>
+    <p>Depending on the circumstances, you may have rights to access, correct, erase or restrict your personal information, object to certain processing, request data portability, and withdraw consent where processing is based on consent. You may also complain to the UK Information Commissioner's Office.</p>
+
+    <h3>Contact us</h3>
+    <p>For privacy questions or requests, contact Lux Frames Ltd through WhatsApp on <a href="https://wa.me/447398481779" target="_blank" rel="noopener noreferrer">+44 7398 481779</a>. You can find information about the UK Information Commissioner's Office at <a href="https://ico.org.uk/" target="_blank" rel="noopener noreferrer">ico.org.uk</a>.</p>
+
+    <h3>Changes to this policy</h3>
+    <p>We may update this policy when our services, providers or legal obligations change. The latest version will be published on this page with an updated date.</p>
+  </div>
+</div>
+
 <script>
+  (() => {
+    const key = 'luxframes_cookie_consent_v1';
+    const banner = document.getElementById('cookie-banner');
+    const accept = document.getElementById('cookie-accept');
+    const reject = document.getElementById('cookie-reject');
+    const settings = document.getElementById('cookie-settings');
+    const privacyModal = document.getElementById('privacy-modal');
+    const privacyClose = document.getElementById('privacy-close');
+    const privacyOpenFooter = document.getElementById('privacy-open-footer');
+    const privacyOpenCookie = document.getElementById('privacy-open-cookie');
+
+    function getConsent() {
+      try { return localStorage.getItem(key); } catch (e) { return null; }
+    }
+
+    function setConsent(value) {
+      try { localStorage.setItem(key, value); } catch (e) {}
+      banner.hidden = true;
+
+      if (value === 'accepted') {
+        window.loadLuxMetaPixel && window.loadLuxMetaPixel();
+      } else if (window.fbq) {
+        try { window.fbq('consent', 'revoke'); } catch (e) {}
+      }
+    }
+
+    function openPrivacy() {
+      privacyModal.hidden = false;
+      document.body.classList.add('privacy-open');
+    }
+
+    function closePrivacy() {
+      privacyModal.hidden = true;
+      document.body.classList.remove('privacy-open');
+    }
+
+    if (!getConsent()) banner.hidden = false;
+
+    accept.addEventListener('click', () => setConsent('accepted'));
+    reject.addEventListener('click', () => setConsent('rejected'));
+    settings.addEventListener('click', () => { banner.hidden = false; });
+    privacyOpenFooter.addEventListener('click', openPrivacy);
+    privacyOpenCookie.addEventListener('click', openPrivacy);
+    privacyClose.addEventListener('click', closePrivacy);
+    privacyModal.addEventListener('click', e => {
+      if (e.target === privacyModal) closePrivacy();
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && !privacyModal.hidden) closePrivacy();
+    });
+  })();
+
   (() => {
     const carousel = document.querySelector('.review-carousel');
     const cards = Array.from(document.querySelectorAll('.review-card'));

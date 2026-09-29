@@ -399,31 +399,7 @@
     .route svg{width:28px;height:28px}
   }
 </style>
-<!-- Meta Pixel Code -->
-<script>
-!function(f,b,e,v,n,t,s)
-{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-n.queue=[];t=b.createElement(e);t.async=!0;
-t.src=v;s=b.getElementsByTagName(e)[0];
-s.parentNode.insertBefore(t,s)}(window, document,'script',
-'https://connect.facebook.net/en_US/fbevents.js');
 
-var luxMetaConsent = null;
-try {
-  luxMetaConsent = localStorage.getItem('luxframes_cookie_consent_v1');
-} catch (e) {}
-
-/*
-  Load and initialise the pixel on every visit so Meta can detect it,
-  but keep tracking revoked until the visitor accepts marketing cookies.
-*/
-fbq('consent', luxMetaConsent === 'accepted' ? 'grant' : 'revoke');
-fbq('init', '876621671699420');
-fbq('track', 'PageView');
-</script>
-<!-- End Meta Pixel Code -->
 </head>
 <body>
 <div class="page">
@@ -440,7 +416,7 @@ fbq('track', 'PageView');
         <a href="#visit">Visit Us</a>
       </nav>
       <div class="nav-actions">
-        <a class="whatsapp-btn" href="https://wa.me/447398481779?text=Hi%2C%20I%27d%20like%20to%20start%20a%20custom%20rimless%20glasses%20order." target="_blank" rel="noopener noreferrer" onclick="window.fbq && window.fbq('track', 'Lead')">
+        <a class="whatsapp-btn" href="https://wa.me/447398481779?text=Hi%2C%20I%27d%20like%20to%20start%20a%20custom%20rimless%20glasses%20order." target="_blank" rel="noopener noreferrer">
           <svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.6a8.9 8.9 0 0 1-13.2 7.8L3 21l1.6-4.7A8.9 8.9 0 1 1 21 11.6Z"/><path d="M8.2 8.2c.3-.7.6-.7.9-.7h.6c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5 0 .7l-.6.8c-.2.2-.2.4 0 .7.5.9 1.2 1.7 2.1 2.2.3.2.5.2.7 0l.9-1.1c.2-.2.4-.3.7-.2l1.8.8c.3.1.5.3.5.5 0 .2-.1 1.1-.7 1.6-.5.6-1.3.9-2.1.9-1.2 0-2.7-.5-4.4-2-2-1.7-3.3-3.8-3.4-5.3 0-.5.1-.9.2-1.1Z"/></svg>
           Get Your Perfect Pair
         </a>
@@ -486,7 +462,7 @@ fbq('track', 'PageView');
             <div class="caption-under">Watch to see how we help you find your perfect pair</div>
           </div>
 
-          <a class="hero-cta" href="https://wa.me/447398481779?text=Hi%2C%20I%27d%20like%20to%20start%20a%20custom%20rimless%20glasses%20order." target="_blank" rel="noopener noreferrer" onclick="window.fbq && window.fbq('track', 'Lead')">
+          <a class="hero-cta" href="https://wa.me/447398481779?text=Hi%2C%20I%27d%20like%20to%20start%20a%20custom%20rimless%20glasses%20order." target="_blank" rel="noopener noreferrer">
             <svg class="wa-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 11.6a8.9 8.9 0 0 1-13.2 7.8L3 21l1.6-4.7A8.9 8.9 0 1 1 21 11.6Z"/><path d="M8.2 8.2c.3-.7.6-.7.9-.7h.6c.2 0 .4.1.5.4l.8 1.8c.1.3.1.5 0 .7l-.6.8c-.2.2-.2.4 0 .7.5.9 1.2 1.7 2.1 2.2.3.2.5.2.7 0l.9-1.1c.2-.2.4-.3.7-.2l1.8.8c.3.1.5.3.5.5 0 .2-.1 1.1-.7 1.6-.5.6-1.3.9-2.1.9-1.2 0-2.7-.5-4.4-2-2-1.7-3.3-3.8-3.4-5.3 0-.5.1-.9.2-1.1Z"/></svg>
             Get Your Perfect Pair on WhatsApp
             <span class="arrow">→</span>
@@ -651,7 +627,7 @@ fbq('track', 'PageView');
             <div>
               <h3>Visit Our London HQ</h3>
               <p>Book an in-person appointment for a personalised fitting experience.</p>
-              <a class="outline-btn" href="https://wa.me/447398481779?text=Hi%20I%E2%80%99d%20like%20to%20book%20an%20in-person%20appointment." target="_blank" rel="noopener noreferrer" onclick="window.fbq && window.fbq('track', 'Lead')">Book an Appointment</a>
+              <a class="outline-btn" href="https://wa.me/447398481779?text=Hi%20I%E2%80%99d%20like%20to%20book%20an%20in-person%20appointment." target="_blank" rel="noopener noreferrer">Book an Appointment</a>
             </div>
           </div>
           <div class="route">
@@ -659,7 +635,7 @@ fbq('track', 'PageView');
             <div>
               <h3>Not in London?</h3>
               <p>No problem. We ship worldwide. Send us your prescription on WhatsApp, choose your frame and lens options with us, and we’ll arrange your order for delivery.</p>
-              <a class="outline-btn" href="https://wa.me/447398481779?text=Hi%2C%20I%27d%20like%20to%20start%20a%20custom%20rimless%20glasses%20order." target="_blank" rel="noopener noreferrer" onclick="window.fbq && window.fbq('track', 'Lead')">Get Started on WhatsApp</a>
+              <a class="outline-btn" href="https://wa.me/447398481779?text=Hi%2C%20I%27d%20like%20to%20start%20a%20custom%20rimless%20glasses%20order." target="_blank" rel="noopener noreferrer">Get Started on WhatsApp</a>
             </div>
           </div>
         </div>
@@ -710,25 +686,11 @@ fbq('track', 'PageView');
         <a href="#why">Why Rimless</a>
         <a href="#how">How It Works</a>
         <button type="button" id="privacy-open-footer">Privacy Policy</button>
-        <button type="button" id="cookie-settings">Cookie Settings</button>
       </div>
       <div class="footer-brand"><img class="footer-logo" src="new-logo.png" alt="Lux Frames" /></div>
       <div class="copyright">© 2026 Lux Frames</div>
     </div>
   </footer>
-</div>
-
-<div class="cookie-banner" id="cookie-banner" role="dialog" aria-label="Cookie preferences" hidden>
-  <div class="cookie-inner">
-    <div class="cookie-copy">
-      <strong>Your privacy choices</strong>
-      <p>We use essential storage to remember your choice. With your permission, we also use Meta Pixel to measure advertising and website activity. <button type="button" id="privacy-open-cookie">Privacy Policy</button></p>
-    </div>
-    <div class="cookie-actions">
-      <button class="cookie-btn" id="cookie-reject" type="button">Reject non-essential</button>
-      <button class="cookie-btn accept" id="cookie-accept" type="button">Accept</button>
-    </div>
-  </div>
 </div>
 
 <div class="privacy-modal" id="privacy-modal" role="dialog" aria-modal="true" aria-labelledby="privacy-title" hidden>
@@ -744,17 +706,17 @@ fbq('track', 'PageView');
       <li>Contact and enquiry details you provide when you contact us, including through WhatsApp.</li>
       <li>Order, appointment, delivery and customer service information.</li>
       <li>Prescription information if you choose to provide it for a prescription glasses order.</li>
-      <li>Technical and advertising measurement data if you consent to Meta Pixel.</li>
+      <li>Technical and advertising measurement data if you visit one of our advertising landing pages and consent to Meta Pixel.</li>
     </ul>
 
     <h3>How we use your information</h3>
-    <p>We use personal information to respond to enquiries, arrange appointments, create and fulfil custom glasses orders, provide customer support, arrange delivery, keep appropriate business records, protect our website and services, and comply with legal obligations. If you consent to marketing measurement cookies, we also use Meta Pixel to understand advertising and website activity.</p>
+    <p>We use personal information to respond to enquiries, arrange appointments, create and fulfil custom glasses orders, provide customer support, arrange delivery, keep appropriate business records, protect our website and services, and comply with legal obligations. On our dedicated advertising landing pages, if you consent to marketing measurement cookies, we also use Meta Pixel to understand advertising and website activity.</p>
 
     <h3>Our lawful bases</h3>
     <p>Depending on the activity, we process information because it is necessary to take steps at your request or perform a contract with you, to comply with a legal obligation, for our legitimate interests in running and protecting our business, or because you have given consent. Where prescription information constitutes health data, we process it only where permitted by applicable data protection law and, where required, with your explicit consent.</p>
 
     <h3>Cookies and similar technologies</h3>
-    <p>We use essential browser storage to remember your cookie preference. Meta Pixel starts with marketing tracking disabled and is enabled only after you choose to accept non-essential tracking. Our Mux video players are configured with cookies disabled. You can reopen Cookie Settings from the footer at any time.</p>
+    <p>We use essential browser storage to remember your cookie preference. This main website does not use Meta Pixel for advertising measurement. Our dedicated advertising landing pages may use Meta Pixel with marketing tracking disabled unless you choose to accept non-essential tracking. Our Mux video players are configured with cookies disabled.</p>
 
     <h3>Who we share information with</h3>
     <p>We may use service providers to operate our website and business, including Meta/WhatsApp for communications and advertising measurement, Mux for video delivery, website hosting providers, and delivery or payment providers where applicable. We only share information where needed for the relevant service, business purpose or legal requirement.</p>
@@ -778,30 +740,9 @@ fbq('track', 'PageView');
 
 <script>
   (() => {
-    const key = 'luxframes_cookie_consent_v1';
-    const banner = document.getElementById('cookie-banner');
-    const accept = document.getElementById('cookie-accept');
-    const reject = document.getElementById('cookie-reject');
-    const settings = document.getElementById('cookie-settings');
     const privacyModal = document.getElementById('privacy-modal');
     const privacyClose = document.getElementById('privacy-close');
     const privacyOpenFooter = document.getElementById('privacy-open-footer');
-    const privacyOpenCookie = document.getElementById('privacy-open-cookie');
-
-    function getConsent() {
-      try { return localStorage.getItem(key); } catch (e) { return null; }
-    }
-
-    function setConsent(value) {
-      try { localStorage.setItem(key, value); } catch (e) {}
-      banner.hidden = true;
-
-      if (window.fbq) {
-        try {
-          window.fbq('consent', value === 'accepted' ? 'grant' : 'revoke');
-        } catch (e) {}
-      }
-    }
 
     function openPrivacy() {
       privacyModal.hidden = false;
@@ -813,13 +754,7 @@ fbq('track', 'PageView');
       document.body.classList.remove('privacy-open');
     }
 
-    if (!getConsent()) banner.hidden = false;
-
-    accept.addEventListener('click', () => setConsent('accepted'));
-    reject.addEventListener('click', () => setConsent('rejected'));
-    settings.addEventListener('click', () => { banner.hidden = false; });
     privacyOpenFooter.addEventListener('click', openPrivacy);
-    privacyOpenCookie.addEventListener('click', openPrivacy);
     privacyClose.addEventListener('click', closePrivacy);
     privacyModal.addEventListener('click', e => {
       if (e.target === privacyModal) closePrivacy();

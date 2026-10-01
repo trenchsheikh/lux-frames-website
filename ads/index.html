@@ -411,23 +411,17 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-
-var luxMetaConsent = null;
-try {
-  luxMetaConsent = localStorage.getItem('luxframes_cookie_consent_v1');
-} catch (e) {}
-
-/*
-  Load and initialise the pixel on every visit so Meta can detect it,
-  but keep tracking revoked until the visitor accepts marketing cookies.
-*/
-fbq('consent', luxMetaConsent === 'accepted' ? 'grant' : 'revoke');
 fbq('init', '876621671699420');
 fbq('track', 'PageView');
 </script>
 <!-- End Meta Pixel Code -->
 </head>
 <body>
+<!-- Meta Pixel Code -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=876621671699420&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 <div class="page">
   <header>
     <div class="shell nav">
@@ -724,7 +718,7 @@ fbq('track', 'PageView');
   <div class="cookie-inner">
     <div class="cookie-copy">
       <strong>Your privacy choices</strong>
-      <p>We use essential storage to remember your choice. With your permission, we also use Meta Pixel to measure advertising and website activity. <button type="button" id="privacy-open-cookie">Privacy Policy</button></p>
+      <p>We use essential storage to remember your choice. We also use Meta Pixel on this advertising landing page to measure advertising and website activity. <button type="button" id="privacy-open-cookie">Privacy Policy</button></p>
     </div>
     <div class="cookie-actions">
       <button class="cookie-btn" id="cookie-reject" type="button">Reject non-essential</button>
@@ -756,7 +750,7 @@ fbq('track', 'PageView');
     <p>Depending on the activity, we process information because it is necessary to take steps at your request or perform a contract with you, to comply with a legal obligation, for our legitimate interests in running and protecting our business, or because you have given consent. Where prescription information constitutes health data, we process it only where permitted by applicable data protection law and, where required, with your explicit consent.</p>
 
     <h3>Cookies and similar technologies</h3>
-    <p>We use essential browser storage to remember your cookie preference. Meta Pixel starts with marketing tracking disabled and is enabled only after you choose to accept non-essential tracking. Our Mux video players are configured with cookies disabled. You can reopen Cookie Settings from the footer at any time.</p>
+    <p>We use essential browser storage to remember your cookie preference. Meta Pixel is used on this advertising landing page for advertising measurement. Our Mux video players are configured with cookies disabled. You can reopen Cookie Settings from the footer at any time.</p>
 
     <h3>Who we share information with</h3>
     <p>We may use service providers to operate our website and business, including Meta/WhatsApp for communications and advertising measurement, Mux for video delivery, website hosting providers, and delivery or payment providers where applicable. We only share information where needed for the relevant service, business purpose or legal requirement.</p>
@@ -771,7 +765,7 @@ fbq('track', 'PageView');
     <p>Depending on the circumstances, you may have rights to access, correct, erase or restrict your personal information, object to certain processing, request data portability, and withdraw consent where processing is based on consent. You may also complain to the UK Information Commissioner's Office.</p>
 
     <h3>Contact us</h3>
-    <p>For privacy questions or requests, contact Lux Frames Ltd through WhatsApp on <a href="https://wa.me/447398481779" target="_blank" rel="noopener noreferrer">+44 7398 481779</a>. You can find information about the UK Information Commissioner's Office at <a href="https://ico.org.uk/" target="_blank" rel="noopener noreferrer">ico.org.uk</a>.</p>
+    <p>For privacy questions or requests, contact Lux Frames Ltd through WhatsApp on <a href="https://wa.me/447398481779" target="_blank" rel="noopener noreferrer" onclick="window.fbq && window.fbq('track', 'Lead')">+44 7398 481779</a>. You can find information about the UK Information Commissioner's Office at <a href="https://ico.org.uk/" target="_blank" rel="noopener noreferrer">ico.org.uk</a>.</p>
 
     <h3>Changes to this policy</h3>
     <p>We may update this policy when our services, providers or legal obligations change. The latest version will be published on this page with an updated date.</p>
@@ -799,17 +793,7 @@ fbq('track', 'PageView');
       try { localStorage.setItem(key, value); } catch (e) {}
       banner.hidden = true;
 
-      if (window.fbq) {
-        try {
-          window.fbq('consent', value === 'accepted' ? 'grant' : 'revoke');
-
-          // The initial PageView is suppressed while consent is revoked.
-          // Fire it immediately when a visitor accepts for the first time.
-          if (value === 'accepted' && previousConsent !== 'accepted') {
-            window.fbq('track', 'PageView');
-          }
-        } catch (e) {}
-      }
+      
     }
 
     function openPrivacy() {

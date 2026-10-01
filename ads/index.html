@@ -795,12 +795,19 @@ fbq('track', 'PageView');
     }
 
     function setConsent(value) {
+      const previousConsent = getConsent();
       try { localStorage.setItem(key, value); } catch (e) {}
       banner.hidden = true;
 
       if (window.fbq) {
         try {
           window.fbq('consent', value === 'accepted' ? 'grant' : 'revoke');
+
+          // The initial PageView is suppressed while consent is revoked.
+          // Fire it immediately when a visitor accepts for the first time.
+          if (value === 'accepted' && previousConsent !== 'accepted') {
+            window.fbq('track', 'PageView');
+          }
         } catch (e) {}
       }
     }

@@ -3,6 +3,12 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<script>
+  // Fallback for ad.luxframes.com: always serve the dedicated tracked ad page.
+  if (window.location.hostname === 'ad.luxframes.com' && !window.location.pathname.startsWith('/ads')) {
+    window.location.replace('/ads/' + window.location.search + window.location.hash);
+  }
+</script>
 <title>Lux Frames - Rimless. Redefined.</title>
 <link rel="icon" type="image/png" href="assets/d__lux-frames_LF-02.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
